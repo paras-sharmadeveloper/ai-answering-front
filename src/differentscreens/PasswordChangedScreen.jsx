@@ -1,7 +1,7 @@
-import AuthShell from "../auth/AuthShell.jsx";
-import AuthHeading from "../auth/AuthHeading.jsx";
-import SuccessIcon from "../auth/SuccessIcon.jsx";
-import PrimaryButton from "../auth/PrimaryButton.jsx";
+import AuthShell from "../components/AuthShell";
+import AuthHeading from "../components/AuthHeading";
+import SuccessIcon from "../components/SuccessIcon";
+import PrimaryButton from "../components/PrimaryButton";
 
 export default function PasswordChangedScreen({ goTo }) {
   return (

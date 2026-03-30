@@ -1,6 +1,6 @@
-import AuthShell from "../auth/AuthShell.jsx";
-import AuthHeading from "../auth/AuthHeading.jsx";
-import PrimaryButton from "../auth/PrimaryButton.jsx";
+import AuthShell from "../components/AuthShell";
+import AuthHeading from "../components/AuthHeading";
+import PrimaryButton from "../components/PrimaryButton";
 
 export default function CheckEmailScreen({ form, goTo }) {
   return (

@@ -1,12 +1,12 @@
 import { useState } from "react";
-import AuthShell from "../auth/AuthShell.jsx";
-import AuthHeading from "../auth/AuthHeading.jsx";
-import TextField from "../auth/TextField.jsx";
-import PrimaryButton from "../auth/PrimaryButton.jsx";
-import SecondaryButton from "../auth/SecondaryButton.jsx";
-import MessageBox from "../auth/MessageBox.jsx";
-import { findUserByEmail } from "../../javafile/authStorage.js";
-import { validateEmail } from "../../javafile/validators.js";
+import AuthShell from "../components/AuthShell";
+import AuthHeading from "../components/AuthHeading";
+import TextField from "../components/TextField";
+import PrimaryButton from "../components/PrimaryButton";
+import SecondaryButton from "../components/SecondaryButton";
+import MessageBox from "../components/MessageBox";
+import { findUserByEmail } from "../javafile/authStorage";
+import { validateEmail } from "../javafile/validators";
 
 export default function ForgotPasswordScreen({ form, setForm, goTo }) {
   const [message, setMessage] = useState("");
@@ -31,7 +31,8 @@ export default function ForgotPasswordScreen({ form, setForm, goTo }) {
       return;
     }
 
-    const generatedOtp = String(Math.floor(1000 + Math.random() * 9000));
+    // const generatedOtp = String(Math.floor(1000 + Math.random() * 9000));
+    const generatedOtp = "1234";
 
     setForm((prev) => ({
       ...prev,

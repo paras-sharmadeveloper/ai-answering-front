@@ -1,13 +1,13 @@
 import { useState } from "react";
 import "./App.css";
 
-import SignUpScreen from "../differentscreens/SignUpScreen.jsx";
-import SignInScreen from "../differentscreens/SignInScreen.jsx";
-import ForgotPasswordScreen from "../differentscreens/ForgotPasswordScreen.jsx";
-import CheckEmailScreen from "../differentscreens/CheckEmailScreen.jsx";
-import OtpVerificationScreen from "../differentscreens/OtpVerificationScreen.jsx";
-import CreateNewPasswordScreen from "../differentscreens/CreateNewPasswordScreen.jsx";
-import PasswordChangedScreen from "../differentscreens/PasswordChangedScreen.jsx";
+import SignUpScreen from "./differentscreens/SignUpScreen";
+import SignInScreen from "./differentscreens/SignInScreen";
+import ForgotPasswordScreen from "./differentscreens/ForgotPasswordScreen";
+import CheckEmailScreen from "./differentscreens/CheckEmailScreen";
+import OtpVerificationScreen from "./differentscreens/OtpVerificationScreen";
+import CreateNewPasswordScreen from "./differentscreens/CreateNewPasswordScreen";
+import PasswordChangedScreen from "./differentscreens/PasswordChangedScreen";
 
 export default function App() {
   const [screen, setScreen] = useState("signup");

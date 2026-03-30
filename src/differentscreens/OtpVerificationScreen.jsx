@@ -1,9 +1,9 @@
 import { useState } from "react";
-import AuthShell from "../auth/AuthShell.jsx";
-import AuthHeading from "../auth/AuthHeading.jsx";
-import OtpFieldGroup from "../auth/OtpFieldGroup.jsx";
-import PrimaryButton from "../auth/PrimaryButton.jsx";
-import MessageBox from "../auth/MessageBox.jsx";
+import AuthShell from "../components/AuthShell";
+import AuthHeading from "../components/AuthHeading";
+import OtpFieldGroup from "../components/OtpFieldGroup";
+import PrimaryButton from "../components/PrimaryButton";
+import MessageBox from "../components/MessageBox";
 
 export default function OtpVerificationScreen({ form, setForm, goTo }) {
   const [message, setMessage] = useState("");

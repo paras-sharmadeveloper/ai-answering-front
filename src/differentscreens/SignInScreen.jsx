@@ -1,14 +1,14 @@
 import { useState } from "react";
-import AuthShell from "../auth/AuthShell.jsx";
-import AuthHeading from "../auth/AuthHeading.jsx";
-import SocialButtons from "../auth/SocialButtons.jsx";
-import Divider from "../auth/Divider.jsx";
-import TextField from "../auth/TextField.jsx";
-import PasswordField from "../auth/PasswordField.jsx";
-import PrimaryButton from "../auth/PrimaryButton.jsx";
-import MessageBox from "../auth/MessageBox.jsx";
-import { loginUser } from "../../javafile/authStorage.js";
-import { validateEmail } from "../../javafile/validators.js";
+import AuthShell from "../components/AuthShell";
+import AuthHeading from "../components/AuthHeading";
+import SocialButtons from "../components/SocialButtons";
+import Divider from "../components/Divider";
+import TextField from "../components/TextField";
+import PasswordField from "../components/PasswordField";
+import PrimaryButton from "../components/PrimaryButton";
+import MessageBox from "../components/MessageBox";
+import { loginUser } from "../javafile/authStorage";
+import { validateEmail } from "../javafile/validators";
 
 export default function SignInScreen({ form, setForm, goTo }) {
   const [message, setMessage] = useState("");
