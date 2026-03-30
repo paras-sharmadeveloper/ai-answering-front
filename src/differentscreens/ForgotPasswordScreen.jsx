@@ -1,12 +1,12 @@
 import { useState } from "react";
-import AuthShell from "../auth/AuthShell";
-import AuthHeading from "../auth/AuthHeading";
-import TextField from "../auth/TextField";
-import PrimaryButton from "../auth/PrimaryButton";
-import SecondaryButton from "../auth/SecondaryButton";
-import MessageBox from "../auth/MessageBox";
-import { findUserByEmail } from "../../javafile/authStorage";
-import { validateEmail } from "../../javafile/validators";
+import AuthShell from "../auth/AuthShell.jsx";
+import AuthHeading from "../auth/AuthHeading.jsx";
+import TextField from "../auth/TextField.jsx";
+import PrimaryButton from "../auth/PrimaryButton.jsx";
+import SecondaryButton from "../auth/SecondaryButton.jsx";
+import MessageBox from "../auth/MessageBox.jsx";
+import { findUserByEmail } from "../../javafile/authStorage.js";
+import { validateEmail } from "../../javafile/validators.js";
 
 export default function ForgotPasswordScreen({ form, setForm, goTo }) {
   const [message, setMessage] = useState("");

@@ -1,13 +1,13 @@
 import { useState } from "react";
 import "./App.css";
 
-import SignUpScreen from "./components/differentscreens/SignUpScreen";
-import SignInScreen from "./components/differentscreens/SignInScreen";
-import ForgotPasswordScreen from "./components/differentscreens/ForgotPasswordScreen";
-import CheckEmailScreen from "./components/differentscreens/CheckEmailScreen";
-import OtpVerificationScreen from "./components/differentscreens/OtpVerificationScreen";
-import CreateNewPasswordScreen from "./components/differentscreens/CreateNewPasswordScreen";
-import PasswordChangedScreen from "./components/differentscreens/PasswordChangedScreen";
+import SignUpScreen from "../differentscreens/SignUpScreen.jsx";
+import SignInScreen from "../differentscreens/SignInScreen.jsx";
+import ForgotPasswordScreen from "../differentscreens/ForgotPasswordScreen.jsx";
+import CheckEmailScreen from "../differentscreens/CheckEmailScreen.jsx";
+import OtpVerificationScreen from "../differentscreens/OtpVerificationScreen.jsx";
+import CreateNewPasswordScreen from "../differentscreens/CreateNewPasswordScreen.jsx";
+import PasswordChangedScreen from "../differentscreens/PasswordChangedScreen.jsx";
 
 export default function App() {
   const [screen, setScreen] = useState("signup");
@@ -59,10 +59,7 @@ export default function App() {
       )}
 
       {screen === "check-email" && (
-        <CheckEmailScreen
-          form={resetForm}
-          goTo={setScreen}
-        />
+        <CheckEmailScreen form={resetForm} goTo={setScreen} />
       )}
 
       {screen === "otp-verification" && (

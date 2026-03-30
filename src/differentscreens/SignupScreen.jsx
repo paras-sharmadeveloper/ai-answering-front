@@ -1,14 +1,14 @@
 import { useState } from "react";
-import AuthShell from "../components/auth/AuthShell";
-import AuthHeading from "../components/auth/AuthHeading";
-import SocialButtons from "../components/auth/SocialButtons";
-import Divider from "../components/auth/Divider";
-import TextField from "../components/auth/TextField";
-import PasswordField from "../components/auth/PasswordField";
-import PrimaryButton from "../components/auth/PrimaryButton";
-import MessageBox from "../components/auth/MessageBox";
-import { createUser } from "../javafile/authStorage";
-import { validateEmail, validatePassword } from "../utils/validators";
+import AuthShell from "../components/auth/AuthShell.jsx";
+import AuthHeading from "../components/auth/AuthHeading.jsx";
+import SocialButtons from "../components/auth/SocialButtons.jsx";
+import Divider from "../components/auth/Divider.jsx";
+import TextField from "../components/auth/TextField.jsx";
+import PasswordField from "../components/auth/PasswordField.jsx";
+import PrimaryButton from "../components/auth/PrimaryButton.jsx";
+import MessageBox from "../components/auth/MessageBox.jsx";
+import { createUser } from "../javafile/authStorage.js";
+import { validateEmail, validatePassword } from "../utils/validators.js";
 
 export default function SignUpScreen({ form, setForm, goTo, setSigninForm }) {
   const [message, setMessage] = useState("");

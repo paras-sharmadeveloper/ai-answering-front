@@ -1,11 +1,11 @@
 import { useState } from "react";
-import AuthShell from "../auth/AuthShell";
-import AuthHeading from "../auth/AuthHeading";
-import PasswordField from "../auth/PasswordField";
-import PrimaryButton from "../auth/PrimaryButton";
-import MessageBox from "../auth/MessageBox";
-import { updatePassword } from "../../javafile/authStorage";
-import { validatePassword } from "../../javafile/validators";
+import AuthShell from "../auth/AuthShell.jsx";
+import AuthHeading from "../auth/AuthHeading.jsx";
+import PasswordField from "../auth/PasswordField.jsx";
+import PrimaryButton from "../auth/PrimaryButton.jsx";
+import MessageBox from "../auth/MessageBox.jsx";
+import { updatePassword } from "../../javafile/authStorage.js";
+import { validatePassword } from "../../javafile/validators.js";
 
 export default function CreateNewPasswordScreen({
   form,
