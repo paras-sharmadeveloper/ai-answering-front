@@ -1,4 +1,4 @@
-export default function SuccessIcon() {
+const SuccessIcon = () => {
   return (
     <div className="mx-auto flex h-[92px] w-[92px] items-center justify-center rounded-full bg-[radial-gradient(circle_at_70%_30%,#e8f7eb_0%,#b8f0c1_35%,#23b043_72%,#159b35_100%)] shadow-[0_12px_22px_rgba(35,176,67,0.18)]">
       <svg
@@ -15,4 +15,6 @@ export default function SuccessIcon() {
       </svg>
     </div>
   );
-}
+};
+
+export default SuccessIcon;

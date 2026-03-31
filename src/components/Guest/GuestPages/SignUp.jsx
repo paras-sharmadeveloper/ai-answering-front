@@ -1,27 +1,30 @@
 import { useState } from "react";
-import AuthShell from "../components/AuthShell";
-import AuthHeading from "../components/AuthHeading";
-import SocialButtons from "../components/SocialButtons";
-import Divider from "../components/Divider";
-import TextField from "../components/TextField";
-import PasswordField from "../components/PasswordField";
-import PrimaryButton from "../components/PrimaryButton";
-import MessageBox from "../components/MessageBox";
-import { createUser } from "../javafile/authStorage";
-import { validateEmail, validatePassword } from "../javafile/validators";
+import AuthLayout from "../../../Layouts/AuthLayout";
+import AuthHeading from "../AuthHeading";
+import SocialButton from "../../forms/SocialButton";
+import Divider from "../../commondata/Divider";
+import TextField from "../../forms/TextField";
+import PasswordField from "../../forms/PasswordField";
+import ButtonPrimary from "../../commondata/ButtonPrimary";
+import MessageBox from "../../commondata/MessageBox";
+import { createUser } from "../../../javafiles/authStorage";
+import {
+  validateEmail,
+  validatePassword,
+} from "../../../javafiles/validators";
 
-export default function SignUpScreen({ form, setForm, goTo, setSigninForm }) {
+const SignUp = ({ form, setForm, goTo, setSigninForm }) => {
   const [message, setMessage] = useState("");
   const [success, setSuccess] = useState("");
 
-  const handleChange = (e) => {
+  const handleChange = (event) => {
     setMessage("");
     setSuccess("");
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setForm((prev) => ({ ...prev, [event.target.name]: event.target.value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     setMessage("");
     setSuccess("");
 
@@ -36,7 +39,9 @@ export default function SignUpScreen({ form, setForm, goTo, setSigninForm }) {
     }
 
     if (!validatePassword(form.password)) {
-      setMessage("Password must be at least 8 characters and include letters and numbers.");
+      setMessage(
+        "Password must be at least 8 characters and include letters and numbers."
+      );
       return;
     }
 
@@ -60,7 +65,7 @@ export default function SignUpScreen({ form, setForm, goTo, setSigninForm }) {
   };
 
   return (
-    <AuthShell>
+    <AuthLayout variant="signup">
       <div className="mx-auto w-full max-w-[450px]">
         <AuthHeading
           title="Get Started Now"
@@ -69,7 +74,7 @@ export default function SignUpScreen({ form, setForm, goTo, setSigninForm }) {
           onLinkClick={() => goTo("signin")}
         />
 
-        <SocialButtons />
+        <SocialButton />
         <Divider text="or sign up using email" />
 
         <form onSubmit={handleSubmit} className="space-y-5">
@@ -103,11 +108,11 @@ export default function SignUpScreen({ form, setForm, goTo, setSigninForm }) {
           />
 
           <div className="pt-2">
-            <PrimaryButton type="submit">Sign Up</PrimaryButton>
+            <ButtonPrimary type="submit">Sign Up</ButtonPrimary>
           </div>
         </form>
 
-        <p className="mx-auto mt-7 max-w-[320px] text-center text-[15px] leading-[1.35] text-[#666666]">
+        <p className="mx-auto mt-7 max-w-[320px] text-center text-[15px] leading-[1.4] text-[#666666]">
           By signing up, you agree to our{" "}
           <button type="button" className="text-black underline">
             Terms of service
@@ -118,6 +123,8 @@ export default function SignUpScreen({ form, setForm, goTo, setSigninForm }) {
           </button>
         </p>
       </div>
-    </AuthShell>
+    </AuthLayout>
   );
-}
+};
+
+export default SignUp;

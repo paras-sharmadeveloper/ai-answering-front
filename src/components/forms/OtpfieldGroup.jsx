@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-export default function OtpFieldGroup({ otp, setOtp }) {
+const OtpfieldGroup = ({ otp, setOtp }) => {
   const refs = useRef([]);
 
   const handleChange = (index, value) => {
@@ -14,8 +14,8 @@ export default function OtpFieldGroup({ otp, setOtp }) {
     }
   };
 
-  const handleKeyDown = (index, e) => {
-    if (e.key === "Backspace" && !otp[index] && index > 0) {
+  const handleKeyDown = (index, event) => {
+    if (event.key === "Backspace" && !otp[index] && index > 0) {
       refs.current[index - 1]?.focus();
     }
   };
@@ -25,16 +25,20 @@ export default function OtpFieldGroup({ otp, setOtp }) {
       {otp.map((digit, index) => (
         <input
           key={index}
-          ref={(el) => (refs.current[index] = el)}
+          ref={(element) => {
+            refs.current[index] = element;
+          }}
           type="text"
           inputMode="numeric"
           maxLength={1}
           value={digit}
-          onChange={(e) => handleChange(index, e.target.value)}
-          onKeyDown={(e) => handleKeyDown(index, e)}
-          className="h-[42px] w-[76px] rounded-[10px] border border-[#d8d8d8] bg-[#f7f7f7] text-center text-[26px] text-[#111111] focus:border-[#23b043] focus:outline-none sm:w-[106px]"
+          onChange={(event) => handleChange(index, event.target.value)}
+          onKeyDown={(event) => handleKeyDown(index, event)}
+          className="h-[54px] w-[64px] rounded-[12px] border border-[#d8d8d8] bg-[#f7f7f7] text-center text-[24px] text-[#111111] focus:border-[#23b043] focus:outline-none sm:w-[78px]"
         />
       ))}
     </div>
   );
-}
+};
+
+export default OtpfieldGroup;

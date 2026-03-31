@@ -1,15 +1,15 @@
 import { useState } from "react";
 import "./App.css";
 
-import SignUpScreen from "./differentscreens/SignUpScreen";
-import SignInScreen from "./differentscreens/SignInScreen";
-import ForgotPasswordScreen from "./differentscreens/ForgotPasswordScreen";
-import CheckEmailScreen from "./differentscreens/CheckEmailScreen";
-import OtpVerificationScreen from "./differentscreens/OtpVerificationScreen";
-import CreateNewPasswordScreen from "./differentscreens/CreateNewPasswordScreen";
-import PasswordChangedScreen from "./differentscreens/PasswordChangedScreen";
+import SignUp from "./components/Guest/GuestPages/SignUp";
+import SignIn from "./components/Guest/GuestPages/SignIn";
+import ForgotPassword from "./components/Guest/GuestPages/ForgotPassword";
+import CheckEmail from "./components/Guest/GuestPages/CheckEmail";
+import OtpVerification from "./components/Guest/GuestPages/OtpVerification";
+import CreateNewPassword from "./components/Guest/GuestPages/CreateNewPassword";
+import PasswordChanged from "./components/Guest/GuestPages/PasswordChanged";
 
-export default function App() {
+const App = () => {
   const [screen, setScreen] = useState("signup");
 
   const [signupForm, setSignupForm] = useState({
@@ -34,7 +34,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white">
       {screen === "signup" && (
-        <SignUpScreen
+        <SignUp
           form={signupForm}
           setForm={setSignupForm}
           goTo={setScreen}
@@ -43,7 +43,7 @@ export default function App() {
       )}
 
       {screen === "signin" && (
-        <SignInScreen
+        <SignIn
           form={signinForm}
           setForm={setSigninForm}
           goTo={setScreen}
@@ -51,7 +51,7 @@ export default function App() {
       )}
 
       {screen === "forgot-password" && (
-        <ForgotPasswordScreen
+        <ForgotPassword
           form={resetForm}
           setForm={setResetForm}
           goTo={setScreen}
@@ -59,11 +59,11 @@ export default function App() {
       )}
 
       {screen === "check-email" && (
-        <CheckEmailScreen form={resetForm} goTo={setScreen} />
+        <CheckEmail form={resetForm} goTo={setScreen} />
       )}
 
       {screen === "otp-verification" && (
-        <OtpVerificationScreen
+        <OtpVerification
           form={resetForm}
           setForm={setResetForm}
           goTo={setScreen}
@@ -71,7 +71,7 @@ export default function App() {
       )}
 
       {screen === "create-new-password" && (
-        <CreateNewPasswordScreen
+        <CreateNewPassword
           form={resetForm}
           setForm={setResetForm}
           goTo={setScreen}
@@ -80,8 +80,10 @@ export default function App() {
       )}
 
       {screen === "password-changed" && (
-        <PasswordChangedScreen goTo={setScreen} />
+        <PasswordChanged goTo={setScreen} />
       )}
     </div>
   );
-}
+};
+
+export default App;

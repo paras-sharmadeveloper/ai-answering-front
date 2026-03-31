@@ -1,11 +1,11 @@
 import { useState } from "react";
-import AuthShell from "../components/AuthShell";
-import AuthHeading from "../components/AuthHeading";
-import OtpFieldGroup from "../components/OtpFieldGroup";
-import PrimaryButton from "../components/PrimaryButton";
-import MessageBox from "../components/MessageBox";
+import AuthLayout from "../../../Layouts/AuthLayout";
+import AuthHeading from "../AuthHeading";
+import OtpfieldGroup from "../../forms/OtpfieldGroup";
+import ButtonPrimary from "../../commondata/ButtonPrimary";
+import MessageBox from "../../commondata/MessageBox";
 
-export default function OtpVerificationScreen({ form, setForm, goTo }) {
+const OtpVerification = ({ form, setForm, goTo }) => {
   const [message, setMessage] = useState("");
 
   const handleSetOtp = (nextOtp) => {
@@ -30,7 +30,7 @@ export default function OtpVerificationScreen({ form, setForm, goTo }) {
   };
 
   return (
-    <AuthShell>
+    <AuthLayout variant="forgotPassword">
       <div className="mx-auto w-full max-w-[460px] text-center">
         <AuthHeading
           title="OTP Verification"
@@ -39,17 +39,22 @@ export default function OtpVerificationScreen({ form, setForm, goTo }) {
           onLinkClick={() => goTo("forgot-password")}
         />
 
-        <MessageBox message={message} />
-        <OtpFieldGroup otp={form.otp} setOtp={handleSetOtp} />
+        <div className="mt-8">
+          <MessageBox message={message} />
+        </div>
+
+        <OtpfieldGroup otp={form.otp} setOtp={handleSetOtp} />
 
         <div className="mt-6">
-          <PrimaryButton onClick={handleSubmit}>Submit</PrimaryButton>
+          <ButtonPrimary onClick={handleSubmit}>Submit</ButtonPrimary>
         </div>
 
         <p className="mt-8 text-[16px] text-[#666666]">
           Resend code in <span className="font-medium text-[#23b043]">59:00</span>
         </p>
       </div>
-    </AuthShell>
+    </AuthLayout>
   );
-}
+};
+
+export default OtpVerification;

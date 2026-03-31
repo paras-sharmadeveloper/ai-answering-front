@@ -1,4 +1,4 @@
-function GoogleIcon() {
+const GoogleIcon = () => {
   return (
     <svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true">
       <path
@@ -19,33 +19,35 @@ function GoogleIcon() {
       />
     </svg>
   );
-}
+};
 
-function AppleIcon() {
+const AppleIcon = () => {
   return (
     <svg width="18" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
       <path d="M16.7 12.5c0-2.3 1.9-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.8-3.5.8-.8 0-1.9-.8-3.1-.8-1.6 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.1 9.1.7 1 1.6 2.2 2.8 2.1 1.1 0 1.5-.7 2.9-.7s1.7.7 2.9.7c1.2 0 2-.9 2.7-2 .8-1.2 1.1-2.4 1.1-2.4-.1 0-3.7-1.4-3.7-5.7ZM14.4 5.6c.6-.8 1-1.9.9-3-.9 0-2.1.6-2.8 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.5 2.9-1.3Z" />
     </svg>
   );
-}
+};
 
-function Btn({ icon, text }) {
+const SocialActionButton = ({ icon, text }) => {
   return (
     <button
       type="button"
-      className="flex h-[42px] w-full items-center justify-center gap-3 rounded-[10px] bg-[#f5f5f5] text-[16px] font-medium text-black"
+      className="flex h-[50px] w-full items-center justify-center gap-3 rounded-[12px] bg-[#f5f5f5] text-[16px] font-medium text-black transition hover:bg-[#eeeeee]"
     >
       {icon}
       <span>{text}</span>
     </button>
   );
-}
+};
 
-export default function SocialButtons() {
+const SocialButton = () => {
   return (
     <div className="mt-8 space-y-3">
-      <Btn icon={<GoogleIcon />} text="Continue with Google" />
-      <Btn icon={<AppleIcon />} text="Continue with Apple" />
+      <SocialActionButton icon={<GoogleIcon />} text="Continue with Google" />
+      <SocialActionButton icon={<AppleIcon />} text="Continue with Apple" />
     </div>
   );
-}
+};
+
+export default SocialButton;

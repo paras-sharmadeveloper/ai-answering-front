@@ -1,4 +1,4 @@
-export default function MessageBox({ type = "error", message }) {
+const MessageBox = ({ type = "error", message }) => {
   if (!message) return null;
 
   const styles =
@@ -7,8 +7,10 @@ export default function MessageBox({ type = "error", message }) {
       : "border-red-200 bg-red-50 text-red-600";
 
   return (
-    <div className={`rounded-[10px] border px-4 py-3 text-sm ${styles}`}>
+    <div className={`rounded-[12px] border px-4 py-3 text-sm ${styles}`}>
       {message}
     </div>
   );
-}
+};
+
+export default MessageBox;

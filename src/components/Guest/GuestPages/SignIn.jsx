@@ -1,27 +1,27 @@
 import { useState } from "react";
-import AuthShell from "../components/AuthShell";
-import AuthHeading from "../components/AuthHeading";
-import SocialButtons from "../components/SocialButtons";
-import Divider from "../components/Divider";
-import TextField from "../components/TextField";
-import PasswordField from "../components/PasswordField";
-import PrimaryButton from "../components/PrimaryButton";
-import MessageBox from "../components/MessageBox";
-import { loginUser } from "../javafile/authStorage";
-import { validateEmail } from "../javafile/validators";
+import AuthLayout from "../../../Layouts/AuthLayout";
+import AuthHeading from "../AuthHeading";
+import SocialButton from "../../forms/SocialButton";
+import Divider from "../../commondata/Divider";
+import TextField from "../../forms/TextField";
+import PasswordField from "../../forms/PasswordField";
+import ButtonPrimary from "../../commondata/ButtonPrimary";
+import MessageBox from "../../commondata/MessageBox";
+import { loginUser } from "../../../javafiles/authStorage";
+import { validateEmail } from "../../../javafiles/validators";
 
-export default function SignInScreen({ form, setForm, goTo }) {
+const SignIn = ({ form, setForm, goTo }) => {
   const [message, setMessage] = useState("");
   const [success, setSuccess] = useState("");
 
-  const handleChange = (e) => {
+  const handleChange = (event) => {
     setMessage("");
     setSuccess("");
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setForm((prev) => ({ ...prev, [event.target.name]: event.target.value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     setMessage("");
     setSuccess("");
 
@@ -46,7 +46,7 @@ export default function SignInScreen({ form, setForm, goTo }) {
   };
 
   return (
-    <AuthShell>
+    <AuthLayout variant="signin">
       <div className="mx-auto w-full max-w-[450px]">
         <AuthHeading
           title={
@@ -61,7 +61,7 @@ export default function SignInScreen({ form, setForm, goTo }) {
           onLinkClick={() => goTo("signup")}
         />
 
-        <SocialButtons />
+        <SocialButton />
         <Divider text="or Sign in using email" />
 
         <form onSubmit={handleSubmit} className="space-y-5">
@@ -83,23 +83,25 @@ export default function SignInScreen({ form, setForm, goTo }) {
               name="password"
               value={form.password}
               onChange={handleChange}
-              placeholder="Create strong password"
+              placeholder="Enter your password"
             />
 
             <button
               type="button"
               onClick={() => goTo("forgot-password")}
-              className="mt-2 inline-block text-[14px] font-medium text-[#23b043]"
+              className="mt-3 inline-block text-[14px] font-medium text-[#23b043]"
             >
               Forgot password?
             </button>
           </div>
 
           <div className="pt-2">
-            <PrimaryButton type="submit">Sign In</PrimaryButton>
+            <ButtonPrimary type="submit">Sign In</ButtonPrimary>
           </div>
         </form>
       </div>
-    </AuthShell>
+    </AuthLayout>
   );
-}
+};
+
+export default SignIn;
