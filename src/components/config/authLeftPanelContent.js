@@ -1,4 +1,5 @@
 import background from "../../assets/background.png";
+import dashboard2 from "../../assets/background-2.png";
 import dashboard from "../../assets/dashboard.png";
 
 export const authLeftPanelContent = {
@@ -19,16 +20,16 @@ export const authLeftPanelContent = {
     year: "2026",
     brand: "Vernal",
     bgImage: background,
-    previewImage: dashboard,
+    previewImage: dashboard2,
   },
 
   forgotPassword: {
-    title: "Recover Your Account In A Secure Way",
+    title: "Make Your Words Sound As Strong As They Read",
     description:
-      "Reset your password safely and get back to your work with a smooth multi-step recovery experience.",
+      "Vernal written communication with advanced text-to-speech that delivers clarity, emotion, and professional-grade sound output.",
     year: "2026",
     brand: "Vernal",
     bgImage: background,
-    previewImage: dashboard,
+    previewImage: dashboard2,
   },
 };

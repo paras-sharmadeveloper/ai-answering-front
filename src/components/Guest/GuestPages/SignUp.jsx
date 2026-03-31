@@ -109,7 +109,7 @@ const SignUp = ({ form, setForm, goTo, setSigninForm }) => {
           </div>
         </form>
 
-        <p className="mx-auto mt-7 max-w-[320px] text-center text-[15px] leading-[1.4] text-[#666666]">
+        <p className="mx-auto mt-7 max-w-[420px] text-center text-[15px] leading-[1.4] text-[#666666]">
           By signing up, you agree to our{" "}
           <button type="button" className="text-black underline">
             Terms of service

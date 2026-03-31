@@ -33,7 +33,7 @@ const SocialActionButton = ({ icon, text }) => {
   return (
     <button
       type="button"
-      className="flex h-[50px] w-full items-center justify-center gap-3 rounded-[12px] bg-[#f5f5f5] text-[16px] font-medium text-black transition hover:bg-[#eeeeee]"
+      className="flex h-[50px] w-full items-center justify-center gap-3 rounded-[12px] bg-[#e6e6e6] text-[14px] font-medium text-black transition hover:bg-[#d3d3d3]"
     >
       {icon}
       <span>{text}</span>

@@ -40,7 +40,7 @@ const PasswordField = ({ label, name, value, onChange, placeholder }) => {
       </label>
 
       <div
-        className={`flex h-[52px] items-center rounded-[12px] border bg-[#f7f7f7] px-4 ${
+        className={`flex h-[45px] items-center rounded-[12px] border bg-[#f7f7f7] px-4 shadow ${
           focused ? "border-[#23b043]" : "border-[#d8d8d8]"
         }`}
       >

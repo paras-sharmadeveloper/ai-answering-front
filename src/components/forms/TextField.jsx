@@ -35,7 +35,7 @@ const TextField = ({
       </label>
 
       <div
-        className={`flex h-[52px] items-center rounded-[12px] border bg-[#f7f7f7] px-4 ${
+        className={`flex h-[45px] items-center rounded-[12px] border bg-[#f7f7f7] px-4 shadow ${
           focused ? "border-[#23b043]" : "border-[#d8d8d8]"
         }`}
       >
@@ -51,7 +51,7 @@ const TextField = ({
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
           placeholder={focused ? "Typing..." : placeholder}
-          className="w-full bg-transparent text-[16px] text-[#111111] placeholder:text-[#b8b8b8] focus:outline-none"
+          className="w-full bg-transparent text-[16px] text-[#111111] placeholder:text-[#b8b8b8] focus:outline-none "
         />
       </div>
     </div>
