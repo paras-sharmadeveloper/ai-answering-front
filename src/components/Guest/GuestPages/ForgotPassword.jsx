@@ -1,12 +1,12 @@
 import { useState } from "react";
-import AuthLayout from "../../../Layouts/AuthLayout";
+import AuthLayout from "../../Layouts/AuthLayout";
 import AuthHeading from "../AuthHeading";
 import TextField from "../../forms/TextField";
 import ButtonPrimary from "../../commondata/ButtonPrimary";
 import ButtonSecondary from "../../commondata/ButtonSecondary";
 import MessageBox from "../../commondata/MessageBox";
-import { findUserByEmail } from "../../../javafiles/authStorage";
-import { validateEmail } from "../../../javafiles/validators";
+import { findUserByEmail } from "../javafiles/authStorage";
+import { validateEmail } from "../javafiles/validators";
 
 const ForgotPassword = ({ form, setForm, goTo }) => {
   const [message, setMessage] = useState("");

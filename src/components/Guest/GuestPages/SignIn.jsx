@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AuthLayout from "../../../Layouts/AuthLayout";
+import AuthLayout from "../../Layouts/AuthLayout";
 import AuthHeading from "../AuthHeading";
 import SocialButton from "../../forms/SocialButton";
 import Divider from "../../commondata/Divider";
@@ -7,8 +7,8 @@ import TextField from "../../forms/TextField";
 import PasswordField from "../../forms/PasswordField";
 import ButtonPrimary from "../../commondata/ButtonPrimary";
 import MessageBox from "../../commondata/MessageBox";
-import { loginUser } from "../../../javafiles/authStorage";
-import { validateEmail } from "../../../javafiles/validators";
+import { loginUser } from "../javafiles/authStorage";
+import { validateEmail } from "../javafiles/validators";
 
 const SignIn = ({ form, setForm, goTo }) => {
   const [message, setMessage] = useState("");

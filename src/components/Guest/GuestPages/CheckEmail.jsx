@@ -1,4 +1,4 @@
-import AuthLayout from "../../../Layouts/AuthLayout";
+import AuthLayout from "../../Layouts/AuthLayout";
 import AuthHeading from "../AuthHeading";
 import ButtonPrimary from "../../commondata/ButtonPrimary";
 

@@ -1,11 +1,11 @@
 import { useState } from "react";
-import AuthLayout from "../../../Layouts/AuthLayout";
+import AuthLayout from "../../Layouts/AuthLayout";
 import AuthHeading from "../AuthHeading";
 import PasswordField from "../../forms/PasswordField";
 import ButtonPrimary from "../../commondata/ButtonPrimary";
 import MessageBox from "../../commondata/MessageBox";
-import { updatePassword } from "../../../javafiles/authStorage";
-import { validatePassword } from "../../../javafiles/validators";
+import { updatePassword } from "../javafiles/authStorage";
+import { validatePassword } from "../javafiles/validators";
 
 const CreateNewPassword = ({ form, setForm, goTo, setSigninForm }) => {
   const [message, setMessage] = useState("");

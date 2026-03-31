@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AuthLayout from "../../../Layouts/AuthLayout";
+import AuthLayout from "../../Layouts/AuthLayout";
 import AuthHeading from "../AuthHeading";
 import OtpfieldGroup from "../../forms/OtpfieldGroup";
 import ButtonPrimary from "../../commondata/ButtonPrimary";
