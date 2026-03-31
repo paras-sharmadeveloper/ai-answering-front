@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import AuthLayout from "../../Layouts/AuthLayout";
 import AuthHeading from "../AuthHeading";
 import SocialButton from "../../forms/SocialButton";
@@ -10,14 +11,25 @@ import MessageBox from "../../commondata/MessageBox";
 import { loginUser } from "../javafiles/authStorage";
 import { validateEmail } from "../javafiles/validators";
 
-const SignIn = ({ form, setForm, goTo }) => {
+const SignIn = () => {
+  const navigate = useNavigate();
+
+  // ✅ Local form state (FIXED)
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
+
   const [message, setMessage] = useState("");
   const [success, setSuccess] = useState("");
 
   const handleChange = (event) => {
     setMessage("");
     setSuccess("");
-    setForm((prev) => ({ ...prev, [event.target.name]: event.target.value }));
+    setForm((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }));
   };
 
   const handleSubmit = (event) => {
@@ -43,6 +55,10 @@ const SignIn = ({ form, setForm, goTo }) => {
     }
 
     setSuccess(`Welcome back, ${result.user.fullName}.`);
+
+    setTimeout(() => {
+      navigate("/admin/dashboard"); // ✅ FIXED route
+    }, 400);
   };
 
   return (
@@ -58,7 +74,7 @@ const SignIn = ({ form, setForm, goTo }) => {
           }
           subtitle="Don’t have an account?"
           linkText="Register"
-          onLinkClick={() => goTo("signup")}
+          onLinkClick={() => navigate("/signup")}
         />
 
         <SocialButton />
@@ -88,7 +104,7 @@ const SignIn = ({ form, setForm, goTo }) => {
 
             <button
               type="button"
-              onClick={() => goTo("forgot-password")}
+              onClick={() => navigate("/forgot-password")}
               className="mt-3 inline-block text-[14px] font-medium text-[#23b043]"
             >
               Forgot password?

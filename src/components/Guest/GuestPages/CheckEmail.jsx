@@ -1,8 +1,10 @@
 import AuthLayout from "../../Layouts/AuthLayout";
 import AuthHeading from "../AuthHeading";
 import ButtonPrimary from "../../commondata/ButtonPrimary";
+import { useNavigate } from "react-router-dom";
 
-const CheckEmail = ({ form, goTo }) => {
+const CheckEmail = ({ form }) => {
+  const navigate = useNavigate();
   return (
     <AuthLayout variant="forgotPassword">
       <div className="mx-auto w-full max-w-[390px] text-center">
@@ -17,7 +19,7 @@ const CheckEmail = ({ form, goTo }) => {
         </div>
 
         <div className="mt-8">
-          <ButtonPrimary onClick={() => goTo("otp-verification")}>
+          <ButtonPrimary onClick={() => navigate("/otp-verification")}>
             Open verification
           </ButtonPrimary>
         </div>

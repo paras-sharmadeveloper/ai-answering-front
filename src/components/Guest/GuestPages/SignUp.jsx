@@ -9,11 +9,21 @@ import ButtonPrimary from "../../commondata/ButtonPrimary";
 import MessageBox from "../../commondata/MessageBox";
 import { createUser } from "../javafiles/authStorage";
 import { validateEmail, validatePassword } from "../javafiles/validators";
+import { useAuth } from "../../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
-const SignUp = ({ form, setForm, goTo, setSigninForm }) => {
+const SignUp = () => {
+  const navigate = useNavigate();
+  const { signupForm, setSignupForm } = useAuth();
+  const form = {
+    fullName: signupForm.fullName,
+    email: signupForm.email,
+    password: signupForm.password,
+  };
+  const { goTo } = useAuth();
+
   const [message, setMessage] = useState("");
   const [success, setSuccess] = useState("");
-
   const handleChange = (event) => {
     setMessage("");
     setSuccess("");
@@ -37,7 +47,7 @@ const SignUp = ({ form, setForm, goTo, setSigninForm }) => {
 
     if (!validatePassword(form.password)) {
       setMessage(
-        "Password must be at least 8 characters and include letters and numbers."
+        "Password must be at least 8 characters and include letters and numbers.",
       );
       return;
     }
@@ -68,7 +78,7 @@ const SignUp = ({ form, setForm, goTo, setSigninForm }) => {
           title="Get Started Now"
           subtitle="Already have account?"
           linkText="Login"
-          onLinkClick={() => goTo("signin")}
+          onLinkClick={() => navigate("/signin")}
         />
 
         <SocialButton />

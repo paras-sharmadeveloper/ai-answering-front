@@ -1,11 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import AuthLayout from "../../Layouts/AuthLayout";
 import AuthHeading from "../AuthHeading";
 import OtpfieldGroup from "../../forms/OtpfieldGroup";
 import ButtonPrimary from "../../commondata/ButtonPrimary";
 import MessageBox from "../../commondata/MessageBox";
 
-const OtpVerification = ({ form, setForm, goTo }) => {
+const OtpVerification = ({ form, setForm }) => {
+  const navigate = useNavigate();
   const [message, setMessage] = useState("");
 
   const handleSetOtp = (nextOtp) => {
@@ -26,7 +28,7 @@ const OtpVerification = ({ form, setForm, goTo }) => {
       return;
     }
 
-    goTo("create-new-password");
+    navigate("/create-new-password");
   };
 
   return (
@@ -36,7 +38,7 @@ const OtpVerification = ({ form, setForm, goTo }) => {
           title="OTP Verification"
           subtitle={`We have sent a verification code to email address ${form.email}`}
           linkText="Wrong Email?"
-          onLinkClick={() => goTo("forgot-password")}
+          onLinkClick={() => navigate("/forgot-password")}
         />
 
         <div className="mt-8">
@@ -50,7 +52,8 @@ const OtpVerification = ({ form, setForm, goTo }) => {
         </div>
 
         <p className="mt-8 text-[16px] text-[#666666]">
-          Resend code in <span className="font-medium text-[#23b043]">59:00</span>
+          Resend code in{" "}
+          <span className="font-medium text-[#23b043]">59:00</span>
         </p>
       </div>
     </AuthLayout>

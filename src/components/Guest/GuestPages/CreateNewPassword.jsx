@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import AuthLayout from "../../Layouts/AuthLayout";
 import AuthHeading from "../AuthHeading";
 import PasswordField from "../../forms/PasswordField";
@@ -7,7 +8,8 @@ import MessageBox from "../../commondata/MessageBox";
 import { updatePassword } from "../javafiles/authStorage";
 import { validatePassword } from "../javafiles/validators";
 
-const CreateNewPassword = ({ form, setForm, goTo, setSigninForm }) => {
+const CreateNewPassword = ({ form, setForm, setSigninForm }) => {
+  const navigate = useNavigate();
   const [message, setMessage] = useState("");
 
   const handleChange = (event) => {
@@ -20,7 +22,7 @@ const CreateNewPassword = ({ form, setForm, goTo, setSigninForm }) => {
 
     if (!validatePassword(form.newPassword)) {
       setMessage(
-        "Password must be at least 8 characters and include letters and numbers."
+        "Password must be at least 8 characters and include letters and numbers.",
       );
       return;
     }
@@ -42,7 +44,7 @@ const CreateNewPassword = ({ form, setForm, goTo, setSigninForm }) => {
       password: "",
     });
 
-    goTo("password-changed");
+    navigate("/password-changed");
   };
 
   return (

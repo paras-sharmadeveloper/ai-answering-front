@@ -1,13 +1,12 @@
-import AdminHeader from "../components/admin/AdminHeader";
-import AdminSidebar from "../components/admin/AdminSidebar";
-
-const AdminLayout = ({ children }) => {
+import { Outlet } from "react-router-dom";
+import AdminSidebar from "../admin/AdminSidebar";
+const AdminLayout = () => {
   return (
-    <div className="min-h-screen bg-[#f5f7fa]">
-      <AdminHeader />
-      <div className="flex">
-        <AdminSidebar />
-        <main className="flex-1 p-6">{children}</main>
+    <div className="flex">
+      <AdminSidebar />
+
+      <div className="ml-64 flex-1 p-6">
+        <Outlet />
       </div>
     </div>
   );

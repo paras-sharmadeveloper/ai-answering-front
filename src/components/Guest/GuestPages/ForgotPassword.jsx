@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import AuthLayout from "../../Layouts/AuthLayout";
 import AuthHeading from "../AuthHeading";
 import TextField from "../../forms/TextField";
@@ -8,7 +9,8 @@ import MessageBox from "../../commondata/MessageBox";
 import { findUserByEmail } from "../javafiles/authStorage";
 import { validateEmail } from "../javafiles/validators";
 
-const ForgotPassword = ({ form, setForm, goTo }) => {
+const ForgotPassword = ({ form, setForm }) => {
+  const navigate = useNavigate();
   const [message, setMessage] = useState("");
 
   const handleChange = (event) => {
@@ -41,7 +43,7 @@ const ForgotPassword = ({ form, setForm, goTo }) => {
       confirmPassword: "",
     }));
 
-    goTo("check-email");
+    navigate("/check-email");
   };
 
   return (
@@ -66,7 +68,7 @@ const ForgotPassword = ({ form, setForm, goTo }) => {
 
           <ButtonPrimary onClick={handleContinue}>Continue</ButtonPrimary>
 
-          <ButtonSecondary onClick={() => goTo("signin")}>
+          <ButtonSecondary onClick={() => navigate("/signin")}>
             Back to Sign In
           </ButtonSecondary>
         </div>
