@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate, Outlet } from "react-router-dom";
 import { Suspense, lazy } from "react";
+import ProtectedRoute from "./ProtectedRoute"; // path adjust karo
 
 // Auth Pages
 const SignUp = lazy(() => import("../components/Guest/GuestPages/SignUp"));
@@ -65,7 +66,14 @@ const AppRoutes = () => {
         <Route path="/password-changed" element={<PasswordChanged />} />
 
         {/* Admin Routes */}
-        <Route path="/admin" element={<AdminLayout />}>
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <AdminLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="company" element={<Company />} />

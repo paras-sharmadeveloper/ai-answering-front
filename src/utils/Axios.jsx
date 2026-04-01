@@ -12,7 +12,6 @@ const Axios = axios.create({
   },
 });
 
-// 🔐 Attach Token Automatically
 Axios.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");

@@ -11,9 +11,11 @@ import MessageBox from "../../commondata/MessageBox";
 import { loginUser } from "../javafiles/authStorage";
 import { validateEmail } from "../javafiles/validators";
 import Axios from "../../../utils/Axios";
-
+import { useDispatch } from "react-redux";
+import { login } from "../../../redux/authSlice";
 const SignIn = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // ✅ Local form state (FIXED)
   const [form, setForm] = useState({
@@ -59,7 +61,8 @@ const SignIn = () => {
         setMessage(result.message);
         return;
       }
-
+      console.log("Login successful, token received:", result);
+      dispatch(login(result)); // ✅ Redux save
       setSuccess(`Welcome back, ${result.user.name}.`);
 
       setTimeout(() => {

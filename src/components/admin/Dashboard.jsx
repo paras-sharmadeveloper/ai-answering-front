@@ -1,4 +1,9 @@
+import { useSelector } from "react-redux";
+
 const Dashboard = () => {
+  const user = useSelector((state) => state.auth.user);
+
+  console.log(user);
   return (
     <>
       <div className="grid gap-4 p-6 lg:grid-cols-3">

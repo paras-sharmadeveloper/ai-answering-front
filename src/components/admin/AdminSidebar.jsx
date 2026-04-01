@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import Axios from "../../utils/Axios";
-
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/authSlice";
 const menuItems = [
   { key: "dashboard", label: "Dashboard", icon: "🏠" },
   { key: "company", label: "Company", icon: "🏢" },
@@ -11,6 +12,7 @@ const menuItems = [
 ];
 
 const AdminSidebar = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -72,7 +74,10 @@ const AdminSidebar = () => {
 
       <div className="absolute bottom-6 left-5 right-5">
         <button
-          onClick={() => handleLogout()}
+          onClick={() => {
+            dispatch(logout());
+            navigate("/signin");
+          }}
           className="w-full rounded-lg bg-red-500 px-4 py-2 text-sm font-semibold text-white hover:bg-red-600"
         >
           Logout
