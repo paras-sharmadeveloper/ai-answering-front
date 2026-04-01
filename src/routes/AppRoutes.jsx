@@ -1,7 +1,7 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, Outlet } from "react-router-dom";
 import { Suspense, lazy } from "react";
 
-// Auth Pages (Lazy Loaded)
+// Auth Pages
 const SignUp = lazy(() => import("../components/Guest/GuestPages/SignUp"));
 const SignIn = lazy(() => import("../components/Guest/GuestPages/SignIn"));
 const ForgotPassword = lazy(
@@ -31,14 +31,32 @@ const Workflows = lazy(() => import("../components/admin/Workflows"));
 const Billing = lazy(() => import("../components/admin/Billing"));
 const Settings = lazy(() => import("../components/admin/Settings"));
 
+// Dubbing Pages
+const Dubbing = lazy(() => import("../components/admin/Dubbing"));
+const DubbingEditor = lazy(() => import("../components/admin/DubbingEditor"));
+
+// Text To Speech Page
+const TextToSpeechPage = lazy(
+  () => import("../components/admin/textToSpeech/TextToSpeechPage"),
+);
+
 import AdminLayout from "../components/Layouts/AdminLayout";
+import { DubbingProvider } from "../components/admin/DubbingContext";
+
+const DubbingLayout = () => {
+  return (
+    <DubbingProvider>
+      <Outlet />
+    </DubbingProvider>
+  );
+};
 
 const AppRoutes = () => {
   return (
-    <Suspense fallback={<div className="text-center mt-10">Loading...</div>}>
+    <Suspense fallback={<div className="mt-10 text-center">Loading...</div>}>
       <Routes>
         {/* Default */}
-        <Route path="/" element={<Navigate to="/signup" />} />
+        <Route path="/" element={<Navigate to="/signup" replace />} />
 
         {/* Auth Routes */}
         <Route path="/signup" element={<SignUp />} />
@@ -51,6 +69,7 @@ const AppRoutes = () => {
 
         {/* Admin Routes */}
         <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="users" element={<Users />} />
           <Route path="ai-agent" element={<AIAgent />} />
@@ -59,7 +78,14 @@ const AppRoutes = () => {
           <Route path="analytics" element={<Analytics />} />
           <Route path="workflows" element={<Workflows />} />
           <Route path="billing" element={<Billing />} />
+          <Route path="text-to-speech" element={<TextToSpeechPage />} />
           <Route path="settings" element={<Settings />} />
+
+          {/* Dubbing Routes */}
+          <Route element={<DubbingLayout />}>
+            <Route path="dubbing" element={<Dubbing />} />
+            <Route path="dubbing/:projectId" element={<DubbingEditor />} />
+          </Route>
         </Route>
 
         {/* 404 */}

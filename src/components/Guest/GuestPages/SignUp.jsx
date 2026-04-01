@@ -14,20 +14,27 @@ import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const navigate = useNavigate();
-  const { signupForm, setSignupForm } = useAuth();
-  const form = {
-    fullName: signupForm.fullName,
-    email: signupForm.email,
-    password: signupForm.password,
-  };
-  const { goTo } = useAuth();
+
+  const {
+    signupForm,
+    setSignupForm,
+    setSigninForm,
+    goTo,
+  } = useAuth();
 
   const [message, setMessage] = useState("");
   const [success, setSuccess] = useState("");
+
   const handleChange = (event) => {
+    const { name, value } = event.target;
+
     setMessage("");
     setSuccess("");
-    setForm((prev) => ({ ...prev, [event.target.name]: event.target.value }));
+
+    setSignupForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = (event) => {
@@ -35,24 +42,24 @@ const SignUp = () => {
     setMessage("");
     setSuccess("");
 
-    if (!form.fullName.trim()) {
+    if (!signupForm.fullName.trim()) {
       setMessage("Full name is required.");
       return;
     }
 
-    if (!validateEmail(form.email)) {
+    if (!validateEmail(signupForm.email)) {
       setMessage("Enter a valid email.");
       return;
     }
 
-    if (!validatePassword(form.password)) {
+    if (!validatePassword(signupForm.password)) {
       setMessage(
-        "Password must be at least 8 characters and include letters and numbers.",
+        "Password must be at least 8 characters and include letters and numbers."
       );
       return;
     }
 
-    const result = createUser(form);
+    const result = createUser(signupForm);
 
     if (!result.success) {
       setMessage(result.message);
@@ -62,18 +69,18 @@ const SignUp = () => {
     setSuccess("Account created successfully.");
 
     setSigninForm({
-      email: form.email,
+      email: signupForm.email,
       password: "",
     });
 
     setTimeout(() => {
-      goTo("signin");
+      navigate("/signin");
     }, 700);
   };
 
   return (
     <AuthLayout variant="signup">
-      <div className="mx-auto w-full max-w-[450px]">
+      <div className="mx-auto w-full max-w-112.5">
         <AuthHeading
           title="Get Started Now"
           subtitle="Already have account?"
@@ -91,7 +98,7 @@ const SignUp = () => {
           <TextField
             label="Full Name"
             name="fullName"
-            value={form.fullName}
+            value={signupForm.fullName}
             onChange={handleChange}
             placeholder="Enter your full name"
             icon="user"
@@ -100,7 +107,7 @@ const SignUp = () => {
           <TextField
             label="Email"
             name="email"
-            value={form.email}
+            value={signupForm.email}
             onChange={handleChange}
             placeholder="Enter your email"
             icon="mail"
@@ -109,7 +116,7 @@ const SignUp = () => {
           <PasswordField
             label="Password"
             name="password"
-            value={form.password}
+            value={signupForm.password}
             onChange={handleChange}
             placeholder="Create strong password"
           />
@@ -119,7 +126,7 @@ const SignUp = () => {
           </div>
         </form>
 
-        <p className="mx-auto mt-7 max-w-[420px] text-center text-[15px] leading-[1.4] text-[#666666]">
+        <p className="mx-auto mt-7 max-w-105 text-center text-[15px] leading-[1.4] text-[#666666]">
           By signing up, you agree to our{" "}
           <button type="button" className="text-black underline">
             Terms of service

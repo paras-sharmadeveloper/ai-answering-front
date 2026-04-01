@@ -9,6 +9,8 @@ const menuItems = [
   { key: "analytics", label: "Analytics", icon: "📊" },
   { key: "workflows", label: "Workflows", icon: "🔁" },
   { key: "billing", label: "Billing", icon: "💳" },
+  { key: "dubbing", label: "Dubbing", icon: "🎙️" },
+  { key: "text-to-speech", label: "Text to Speech", icon: "✨" },
   { key: "settings", label: "Settings", icon: "⚙️" },
 ];
 
@@ -18,7 +20,6 @@ const AdminSidebar = () => {
 
   return (
     <aside className="fixed left-0 top-0 h-screen w-64 border-r border-[#e5e7eb] bg-white p-5 text-sm shadow-sm">
-      {/* Logo */}
       <div className="mb-8 flex items-center gap-2 rounded-lg bg-[#f3f4f6] px-3 py-3">
         <div className="grid h-8 w-8 place-items-center rounded bg-green-500 text-base font-bold text-white">
           V
@@ -29,11 +30,12 @@ const AdminSidebar = () => {
         </div>
       </div>
 
-      {/* Menu */}
       <nav className="space-y-1">
         {menuItems.map((item) => {
           const path = `/admin/${item.key}`;
-          const active = location.pathname === path;
+          const active =
+            location.pathname === path ||
+            location.pathname.startsWith(`${path}/`);
 
           return (
             <button
@@ -52,7 +54,6 @@ const AdminSidebar = () => {
         })}
       </nav>
 
-      {/* Logout */}
       <div className="absolute bottom-6 left-5 right-5">
         <button
           onClick={() => navigate("/signin")}
