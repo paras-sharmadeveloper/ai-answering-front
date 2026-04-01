@@ -22,12 +22,12 @@ const SignUp = () => {
   });
   const { goTo } = useAuth();
 
-  const {
-    signupForm,
-    setSignupForm,
-    setSigninForm,
-    goTo,
-  } = useAuth();
+  // const {
+  //   signupForm,
+  //   setSignupForm,
+  //   setSigninForm,
+  //   goTo,
+  // } = useAuth();
 
   const [message, setMessage] = useState("");
   const [success, setSuccess] = useState("");
