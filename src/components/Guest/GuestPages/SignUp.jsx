@@ -15,11 +15,11 @@ import { useNavigate } from "react-router-dom";
 const SignUp = () => {
   const navigate = useNavigate();
   const { signupForm, setSignupForm } = useAuth();
-  const form = {
-    fullName: (signupForm.fullName || "").trim(),
-    email: signupForm.password || "",
-    password: signupForm.password || "",
-  };
+  const [form, setForm] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+  });
   const { goTo } = useAuth();
 
   const [message, setMessage] = useState("");
