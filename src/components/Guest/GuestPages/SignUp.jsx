@@ -16,9 +16,9 @@ const SignUp = () => {
   const navigate = useNavigate();
   const { signupForm, setSignupForm } = useAuth();
   const form = {
-    fullName: signupForm.fullName,
-    email: signupForm.email,
-    password: signupForm.password,
+    fullName: (signupForm.fullName || "").trim(),
+    email: signupForm.password || "",
+    password: signupForm.password || "",
   };
   const { goTo } = useAuth();
 
