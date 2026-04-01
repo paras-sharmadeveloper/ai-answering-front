@@ -1,5 +1,5 @@
 import { authLeftPanelContent } from "../config/authLeftPanelContent";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/Logo.png";
 
 const AuthLeftPanel = ({ variant = "signup" }) => {
   const content = authLeftPanelContent[variant] || authLeftPanelContent.signup;
