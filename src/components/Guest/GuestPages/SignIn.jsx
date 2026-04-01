@@ -13,6 +13,8 @@ import { validateEmail } from "../javafiles/validators";
 import Axios from "../../../utils/Axios";
 import { useDispatch } from "react-redux";
 import { login } from "../../../redux/authSlice";
+import toast from "react-hot-toast";
+
 const SignIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -64,12 +66,14 @@ const SignIn = () => {
       console.log("Login successful, token received:", result);
       dispatch(login(result)); // ✅ Redux save
       setSuccess(`Welcome back, ${result.user.name}.`);
+      toast.success("Login successful!");
 
       setTimeout(() => {
         console.log("Login successful, navigating to dashboard...");
         navigate("/admin/dashboard"); // ✅ FIXED route
       }, 400);
     } catch (error) {
+      toast.error(error.response?.data?.message || "Login failed.");
       console.error(error.response?.data);
       setMessage(
         error.response?.data?.message || "An error occurred during login.",

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Axios from "../../../utils/Axios";
+import toast from "react-hot-toast";
 const AgentForm = ({ agent, onClose }) => {
   const [form, setForm] = useState({
     name: "",
@@ -19,9 +20,11 @@ const AgentForm = ({ agent, onClose }) => {
     e.preventDefault();
 
     if (agent) {
-      await Axios.put(`/agent/${agent.id}`, form);
+      const res = await Axios.put(`/agent/${agent.id}`, form);
+      toast.success("Agent updated successfully!");
     } else {
       await Axios.post("/agent", form);
+      toast.success("Agent added successfully!");
     }
 
     onClose();

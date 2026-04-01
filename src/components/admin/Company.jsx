@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Axios from "../../utils/Axios";
+import toast from "react-hot-toast";
 
 const Company = () => {
   const [form, setForm] = useState({
@@ -43,8 +44,7 @@ const Company = () => {
       setLoading(true);
 
       await Axios.post("/company", form);
-
-      alert("Company saved successfully!");
+      toast.success("Company saved successfully!");
     } catch (error) {
       console.error(error.response?.data);
     } finally {
