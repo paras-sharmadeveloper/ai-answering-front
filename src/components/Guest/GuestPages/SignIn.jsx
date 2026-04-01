@@ -10,6 +10,7 @@ import ButtonPrimary from "../../commondata/ButtonPrimary";
 import MessageBox from "../../commondata/MessageBox";
 import { loginUser } from "../javafiles/authStorage";
 import { validateEmail } from "../javafiles/validators";
+import Axios from "../../../utils/Axios";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ const SignIn = () => {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setMessage("");
     setSuccess("");
@@ -46,19 +47,31 @@ const SignIn = () => {
       setMessage("Password is required.");
       return;
     }
+    // ✅ API call to backend (FIXED)
+    try {
+      const res = await Axios.post("/login", {
+        email: form.email,
+        password: form.password,
+      });
+      const result = res.data;
+      console.log("Login response:", result);
+      if (!result.token) {
+        setMessage(result.message);
+        return;
+      }
 
-    const result = loginUser(form.email, form.password);
+      setSuccess(`Welcome back, ${result.user.name}.`);
 
-    if (!result.success) {
-      setMessage(result.message);
-      return;
+      setTimeout(() => {
+        console.log("Login successful, navigating to dashboard...");
+        navigate("/admin/dashboard"); // ✅ FIXED route
+      }, 400);
+    } catch (error) {
+      console.error(error.response?.data);
+      setMessage(
+        error.response?.data?.message || "An error occurred during login.",
+      );
     }
-
-    setSuccess(`Welcome back, ${result.user.fullName}.`);
-
-    setTimeout(() => {
-      navigate("/admin/dashboard"); // ✅ FIXED route
-    }, 400);
   };
 
   return (
@@ -77,8 +90,8 @@ const SignIn = () => {
           onLinkClick={() => navigate("/signup")}
         />
 
-        <SocialButton />
-        <Divider text="or Sign in using email" />
+        {/* <SocialButton /> */}
+        {/* <Divider text="or Sign in using email" /> */}
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <MessageBox type="error" message={message} />

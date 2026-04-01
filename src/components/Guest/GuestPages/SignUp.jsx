@@ -12,6 +12,8 @@ import { validateEmail, validatePassword } from "../javafiles/validators";
 import { useAuth } from "../../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
+import Axios from "../../../utils/Axios";
+
 const SignUp = () => {
   const navigate = useNavigate();
   const { signupForm, setSignupForm } = useAuth();
@@ -21,13 +23,6 @@ const SignUp = () => {
     password: "",
   });
   const { goTo } = useAuth();
-
-  // const {
-  //   signupForm,
-  //   setSignupForm,
-  //   setSigninForm,
-  //   goTo,
-  // } = useAuth();
 
   const [message, setMessage] = useState("");
   const [success, setSuccess] = useState("");
@@ -44,7 +39,7 @@ const SignUp = () => {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setMessage("");
     setSuccess("");
@@ -61,28 +56,33 @@ const SignUp = () => {
 
     if (!validatePassword(signupForm.password)) {
       setMessage(
-        "Password must be at least 8 characters and include letters and numbers."
+        "Password must be at least 8 characters and include letters and numbers.",
       );
       return;
     }
 
-    const result = createUser(signupForm);
+    try {
+      const res = await Axios.post("/register", {
+        name: signupForm.fullName,
+        email: signupForm.email,
+        password: signupForm.password,
+      });
 
-    if (!result.success) {
-      setMessage(result.message);
-      return;
+      console.log(res.data);
+
+      // Save token
+      localStorage.setItem("token", res.data.token);
+    } catch (error) {
+      console.error(error.response?.data);
     }
 
     setSuccess("Account created successfully.");
 
-    setSigninForm({
-      email: signupForm.email,
-      password: "",
-    });
-
-    setTimeout(() => {
-      navigate("/signin");
-    }, 700);
+    // setSigninForm({
+    //   email: signupForm.email,
+    //   password: "",
+    // });
+    navigate("/signin");
   };
 
   return (
@@ -95,8 +95,8 @@ const SignUp = () => {
           onLinkClick={() => navigate("/signin")}
         />
 
-        <SocialButton />
-        <Divider text="or sign up using email" />
+        {/* <SocialButton /> */}
+        {/* <Divider text="or sign up using email" /> */}
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <MessageBox type="error" message={message} />

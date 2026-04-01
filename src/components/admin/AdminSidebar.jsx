@@ -1,15 +1,11 @@
 import { useNavigate, useLocation } from "react-router-dom";
+import Axios from "../../utils/Axios";
 
 const menuItems = [
   { key: "dashboard", label: "Dashboard", icon: "🏠" },
-  { key: "users", label: "Users", icon: "👥" },
-  { key: "ai-agent", label: "AI Agent", icon: "🤖" },
+  { key: "company", label: "Company", icon: "🏢" },
+  { key: "agent", label: "Agent", icon: "🤖" },
   { key: "phone-numbers", label: "Phone Numbers", icon: "📞" },
-  { key: "call-logs", label: "Call Logs", icon: "📝" },
-  { key: "analytics", label: "Analytics", icon: "📊" },
-  { key: "workflows", label: "Workflows", icon: "🔁" },
-  { key: "billing", label: "Billing", icon: "💳" },
-  { key: "dubbing", label: "Dubbing", icon: "🎙️" },
   { key: "text-to-speech", label: "Text to Speech", icon: "✨" },
   { key: "settings", label: "Settings", icon: "⚙️" },
 ];
@@ -17,6 +13,26 @@ const menuItems = [
 const AdminSidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const handleLogout = async () => {
+    try {
+      await Axios.post(
+        "/logout",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        },
+      );
+    } catch (error) {
+      console.error("Logout failed:", error);
+    } finally {
+      // Clear token and redirect to sign-in page
+      localStorage.removeItem("token");
+      window.location.href = "/signin";
+    }
+  };
 
   return (
     <aside className="fixed left-0 top-0 h-screen w-64 border-r border-[#e5e7eb] bg-white p-5 text-sm shadow-sm">
@@ -56,7 +72,7 @@ const AdminSidebar = () => {
 
       <div className="absolute bottom-6 left-5 right-5">
         <button
-          onClick={() => navigate("/signin")}
+          onClick={() => handleLogout()}
           className="w-full rounded-lg bg-red-500 px-4 py-2 text-sm font-semibold text-white hover:bg-red-600"
         >
           Logout

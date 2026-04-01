@@ -23,14 +23,11 @@ const PasswordChanged = lazy(
 // Admin Pages
 const Dashboard = lazy(() => import("../components/admin/Dashboard"));
 const Users = lazy(() => import("../components/admin/Users"));
-const AIAgent = lazy(() => import("../components/admin/AIAgent"));
 const PhoneNumbers = lazy(() => import("../components/admin/PhoneNumbers"));
-const CallLogs = lazy(() => import("../components/admin/CallLogs"));
-const Analytics = lazy(() => import("../components/admin/Analytics"));
-const Workflows = lazy(() => import("../components/admin/Workflows"));
-const Billing = lazy(() => import("../components/admin/Billing"));
 const Settings = lazy(() => import("../components/admin/Settings"));
-
+const Company = lazy(() => import("../components/admin/Company"));
+const AgentForm = lazy(() => import("../components/admin/agent/AgentForm"));
+const AgentList = lazy(() => import("../components/admin/agent/AgentPage.jsx"));
 // Dubbing Pages
 const Dubbing = lazy(() => import("../components/admin/Dubbing"));
 const DubbingEditor = lazy(() => import("../components/admin/DubbingEditor"));
@@ -71,13 +68,16 @@ const AppRoutes = () => {
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
+          <Route path="company" element={<Company />} />
           <Route path="users" element={<Users />} />
-          <Route path="ai-agent" element={<AIAgent />} />
+          <Route path="agent" element={<AgentList />} />
+          <Route path="agent/new" element={<AgentForm />} />
+          <Route path="agent/:id" element={<AgentForm />} />
           <Route path="phone-numbers" element={<PhoneNumbers />} />
-          <Route path="call-logs" element={<CallLogs />} />
-          <Route path="analytics" element={<Analytics />} />
-          <Route path="workflows" element={<Workflows />} />
-          <Route path="billing" element={<Billing />} />
+          {/* <Route path="call-logs" element={<CallLogs />} /> */}
+          {/* <Route path="analytics" element={<Analytics />} /> */}
+          {/* <Route path="workflows" element={<Workflows />} /> */}
+          {/* <Route path="billing" element={<Billing />} /> */}
           <Route path="text-to-speech" element={<TextToSpeechPage />} />
           <Route path="settings" element={<Settings />} />
 
