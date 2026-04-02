@@ -65,6 +65,8 @@ const PhoneNumbers = () => {
           <option value="US">United States</option>
           <option value="GB">United Kingdom</option>
           <option value="CA">Canada</option>
+          <option value="IN">India</option>
+          <option value="AU">Australia</option>
         </select>
 
         <button
